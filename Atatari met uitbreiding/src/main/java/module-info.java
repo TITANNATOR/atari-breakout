@@ -6,3 +6,4 @@ module be.inf1.ataribreakout {
     opens be.inf1.ataribreakout to javafx.fxml;
     exports be.inf1.ataribreakout;
 }
+//https://zetcode.com/javagames/breakout/ code van overgenomen.

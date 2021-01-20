@@ -18,20 +18,15 @@ import javafx.application.Platform;
 public class BreakoutTask extends TimerTask {
     private Breakout model;
     private BreakoutController controller;
-    private Bal ball;
-    private Balk pallet;
-   
 
     public BreakoutTask(Breakout model, BreakoutController controller) {
         this.model = model;
         this.controller = controller;
     }
-    
-           
+         
     @Override
     public void run() {
-        pallet.tick();
+        model.getPallet().tick();
         Platform.runLater(controller::update);
     }
-    
 }

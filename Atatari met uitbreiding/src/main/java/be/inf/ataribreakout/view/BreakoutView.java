@@ -5,8 +5,7 @@
  */
 package be.inf.ataribreakout.view;
 
-import be.inf1.ataribreakout.model.Bal;
-import be.inf1.ataribreakout.model.Balk;
+import be.inf1.ataribreakout.model.Brick;
 import be.inf1.ataribreakout.model.Breakout;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
@@ -19,39 +18,58 @@ import javafx.scene.shape.Rectangle;
  */
 public class BreakoutView extends Region{
     private Breakout model;
-    private Balk pallet;
-    private Bal ball;
-    
-    
     
     public BreakoutView(Breakout model) {
         this.model = model;
-        update();
     } 
-          
     
     public void update() {
         getChildren().clear();
-        //System.out.println(model.getX()); voor testen
-        Rectangle rh = new Rectangle(pallet.getX(), pallet.getY(), 200, 20);
-        Rectangle bm = new Rectangle(-380,-500,1540,21);
-        Rectangle lm = new Rectangle(1120,-479,21,680);
-        Rectangle rm = new Rectangle(-370,-479,21,680);
-        Rectangle om = new Rectangle(-380,200,1540,21);
-        Circle cr = new Circle(ball.getX(), ball.getY(), 25);
+        
+        drawBall();
+        drawPallet();
+        //drawBorder();
+        drawBricks();
+    }
+    
+    private void drawBall() {
+        Circle cr = new Circle(model.getBall().getX(), model.getBall().getY(), 15);
+        getChildren().add(cr);
+    }
+    
+    private void drawPallet() {
+        Rectangle rh = new Rectangle(model.getPallet().getX(), model.getPallet().getY(), 200, 20);
         rh.setFill(Color.GOLD);
+        getChildren().add(rh);
+    }
+    
+    private void drawBorder() {
+        Rectangle bm = new Rectangle(-380,-500,1540,20);
+        Rectangle lm = new Rectangle(1120,-479,20,680);
+        Rectangle rm = new Rectangle(-370,-479,20,680);
+        Rectangle om = new Rectangle(-380,200,1540,20);
+        
         bm.setFill(Color.PALETURQUOISE);
         lm.setFill(Color.PALETURQUOISE);
         rm.setFill(Color.PALETURQUOISE);
         om.setFill(Color.RED);
         
-        getChildren().add(rh);
-        getChildren().add(cr);
         getChildren().add(bm);
         getChildren().add(lm);
         getChildren().add(rm);
         getChildren().add(om);
+    }
+    
+    private void drawBricks() {
+        Rectangle test = new Rectangle(0,0, 100, 50);
+            test.setFill(Color.BLUE);
+            getChildren().add(test);
         
+        for (Brick brick : model.getBricks()) {
+            Rectangle rec = new Rectangle(brick.getX(), brick.getY(), brick.getWidth(), brick.getHeight());
+            rec.setFill(Color.BLUE);
+            getChildren().add(rec);
         }
+    }
 }
 

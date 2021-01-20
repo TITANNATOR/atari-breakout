@@ -15,34 +15,34 @@ public class Breakout {
     private Bal ball;
     private Balk pallet;
     private ArrayList<Brick> bricken;
-
+    
     public Breakout() {
-        this.pallet = pallet;
-    }
-
-    public class getPallet {
-           
-        public getPallet() {
-            pallet.getX();
-            pallet.getY();
-            pallet.rechts();
-            pallet.links();
-            pallet.pauze();
-            
+        this.pallet = new Balk();
+        this.ball = new Bal();
         
+        this.bricken = new ArrayList<>();
+        //800x600
+        double brickWidth = 10;
+        double brickHeight = 10;
+        
+        for (int x=0; x<=80; x+=brickWidth) {
+            for (int y=0; y<=50; y+=brickHeight) {
+                this.bricken.add(new Brick(x, y, brickWidth, brickHeight));
+            }
         }
     }
 
-    public class getBalletje {
-
-        public getBalletje() {
-           ball.getX();
-           ball.getY();
-        }
+    public Balk getPallet() {
+        return pallet;
     }
-    
-    
-    
+
+    public Bal getBall() {
+        return ball;
+    }
+
+    public ArrayList<Brick> getBricks() {
+        return bricken;
+    }
     
 }
 
